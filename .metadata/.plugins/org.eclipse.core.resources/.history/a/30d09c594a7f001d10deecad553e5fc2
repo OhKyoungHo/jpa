@@ -1,0 +1,17 @@
+package com.domain;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+import lombok.Data;
+
+@Data
+@Entity
+@Table(name="DEPT_A")
+public class Department {
+	
+	private int deptno;
+	private String dname;
+	private String loc;
+
+}

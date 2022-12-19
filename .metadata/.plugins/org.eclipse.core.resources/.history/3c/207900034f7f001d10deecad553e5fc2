@@ -1,0 +1,32 @@
+package com.domain;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
+public class MainApp {
+
+	public static void main(String[] args) {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("cReference");
+		
+		try {
+			//[1] 연관관계를 이용한 데이터 검색
+			selectData(emf);
+		}catch(Exception ex){
+			System.out.println("예외:" + ex.getMessage());
+		}finally {
+			emf.close();
+		}
+
+	}//end of main
+	
+	//[1] 연관관계를 이용한 데이터 검색
+	static void selectData(EntityManagerFactory emf) {
+		EntityManager em = emf.createEntityManager();
+		
+		em.find(Employee.class, 7788);
+		em.close();
+		
+	}
+
+}

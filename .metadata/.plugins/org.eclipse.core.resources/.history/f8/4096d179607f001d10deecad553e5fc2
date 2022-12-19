@@ -1,0 +1,10 @@
+package com.domain;
+
+public class EmpManagedMain {
+
+	public static void main(String[] args) {
+		// 1299 사번의 홍길숙님 정보를 입력하기
+
+	}
+
+}

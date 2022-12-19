@@ -1,0 +1,30 @@
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
+import javax.persistence.Persistence;
+
+public class EmpManagedMain {
+
+	public static void main(String[] args) {
+		// 1299 사번의 홍길숙님 정보를 입력하기
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("bContextState");
+		
+		try {
+			//[2] 연관관계를 이용한 데이터 입력
+			insertData(emf);
+		}catch(Exception ex){
+			System.out.println("예외:" + ex.getMessage());
+		}finally {
+			emf.close();
+		}
+
+	}//end of main
+	
+	static void insertDate(EntityManagerFactory emf) {
+		EntityManager em = emf.createEntityManager();
+		EntityTransaction tx = em.getTransaction();
+		tx.begin();
+		
+	}
+
+}

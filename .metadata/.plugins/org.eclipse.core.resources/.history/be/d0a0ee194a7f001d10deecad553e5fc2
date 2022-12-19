@@ -1,0 +1,9 @@
+package com.domain;
+
+public class Department {
+	
+	private int deptno;
+	private String dname;
+	private String loc;
+
+}

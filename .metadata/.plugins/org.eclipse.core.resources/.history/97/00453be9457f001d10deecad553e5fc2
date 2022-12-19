@@ -1,0 +1,18 @@
+package com.domain;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import lombok.Data;
+
+@Data	// lombok: setter, getter, tostring...
+//
+@Entity
+@Table(name="EMP_Z")
+public class EmpVO2 {
+	
+	@Id
+	private int empno;
+	
+}
