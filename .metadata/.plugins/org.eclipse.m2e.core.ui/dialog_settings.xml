@@ -6,6 +6,7 @@
 	</section>
 	<section name="MavenProjectWizardLocationPage">
 		<list key="location">
+			<item value="D:\jpa\cReference\src\main\java\com\domain\MainApp.java"/>
 			<item value="D:\jpa\cReference"/>
 			<item value="D:\jpa\aBasic"/>
 		</list>
@@ -49,12 +50,14 @@
 	</section>
 	<section name="MavenProjectWizardArtifactPage">
 		<list key="groupId">
+			<item value="djpql"/>
 			<item value="bContextState"/>
 			<item value="cReference"/>
 		</list>
 		<list key="name">
 		</list>
 		<list key="artifactId">
+			<item value="djpql"/>
 			<item value="bContextState"/>
 			<item value="cReference"/>
 		</list>

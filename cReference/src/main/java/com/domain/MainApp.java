@@ -1,5 +1,6 @@
 package com.domain;
 
+import javax.persistence.CascadeType;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
@@ -12,9 +13,15 @@ public class MainApp {
 		
 		try {
 			//[1] 연관관계를 이용한 데이터 검색
-			selectData(emf);
+			//dept와 join되어 있어서 자동으로 join(outer or inner)된 sql 문장으로 출력됨
+			//selectData(emf);
 			//[2] 연관관계를 이용한 데이터 입력
-			insertData(emf);
+			//insertData(emf);
+			//[3] 연관관계를 이용한 데이터 수정
+			//updateData(emf);
+			//[4] 연관관계를 이용한 데이터 삭제
+			deleteData(emf);
+			
 		}catch(Exception ex){
 			System.out.println("예외:" + ex.getMessage());
 		}finally {
@@ -22,6 +29,41 @@ public class MainApp {
 		}
 
 	}//end of main
+	
+	static void deleteData(EntityManagerFactory emf) {
+		EntityManager em = emf.createEntityManager();
+		EntityTransaction tx = em.getTransaction();
+		tx.begin();
+		
+		//40번 부서를 삭제
+		Department dept = em.find(Department.class, 40);
+		//System.out.println(dept);
+		em.remove(dept);	//현재 40번 부서를 쓰고 있어서 삭제 불가능(에러발생)
+		// [해결1] 사원테이블에서 40번부서의 내용을 null 수정
+		// [해결2] 40번 부서의 사원정보를 먼저 삭제
+		// cascade= {CascadeType.PERSIST, CascadeType.REMOVE} 설정해서 부서번호가 40번인 것을
+		tx.commit();
+		em.close();
+	}
+	
+	static void updateData(EntityManagerFactory emf) {
+		//사번이 7369 사원의 부서를 40번 부서로 변경
+		EntityManager em = emf.createEntityManager();
+		EntityTransaction tx = em.getTransaction();
+		tx.begin();
+		//7369번 사원 찾기
+		Employee emp1 = em.find(Employee.class, 7369);
+		// 40번 부서 찾기
+		Department dept = em.find(Department.class, 10);
+		//7369 사원에 부서 번호 40번으로 넣기
+		emp1.setDept(dept);
+		// 커밋 후 닫기
+		tx.commit();
+		em.close();
+
+		
+		
+	}
 	
 	//[1] 연관관계를 이용한 데이터 검색
 	static void selectData(EntityManagerFactory emf) {
